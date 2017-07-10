@@ -38,6 +38,9 @@ var getAll = () => {
 
 var getNote = (title) => {
     console.log('Getting note', title);
+    var notes = fetchNotes();
+    var filteredNodes = notes.filter((note) => note.title === title);
+    return filteredNodes[0];
 };
 
 var removeNote = (title) => {
