@@ -1,8 +1,12 @@
+require('dotenv').config()
 const request = require('request');
 
-request({
-    url: "http://maps.googleapis.com/maps/api/geocode/json?address=1301%20lombard%20street%20philadelphia",
-    json: true
-}, (error, reponse, body) => {
+function handleRequest(error, response, body) {
     console.log(JSON.stringify(body, undefined, 2));
-});
+}
+
+requestData = {
+    url: `https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/37.8267,-122.4233`
+};
+
+request(requestData, handleRequest);
