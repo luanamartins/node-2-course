@@ -4,11 +4,16 @@ const express = require('express')
 const app = express()
 
 app.get('', (req, res) => {
-    res.send('Hello express!');
+    // Provide HTML to render in the browser
+    res.send('<h1>Weather</h1>')
 });
 
 app.get('/weather', (req, res) => {
-    res.send('Your weather');
+    // Provide an object to send as JSON
+    res.send({
+        forecast: 'It is snowing',
+        location: 'Philadelphia'
+    });
 });
 
 app.listen(3000, () => {
