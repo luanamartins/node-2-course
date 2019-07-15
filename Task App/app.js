@@ -16,6 +16,18 @@ app.post('/users', (req, res) => {
     });
 });
 
+app.get('/users/:id', (req, res) => {
+    const _id = req.params.id // Access the id provided
+    User.findById(_id).then((user) => {
+            if (!user) {
+                return res.status(404).send();
+            }
+            res.send(user);
+    }).catch((e) => {
+        res.status(500).send();
+    });
+});
+
 app.listen(3000, () => {
     console.log('Server is up on port 3000.');
 });
