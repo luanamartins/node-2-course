@@ -16,12 +16,10 @@ app.get('', (req, res) => {
     res.send('<h1>Weather</h1>')
 });
 
+// http://localhost:3000/weather?address=Philadephia&units=us
 app.get('/weather', (req, res) => {
-    // Provide an object to send as JSON
-    res.send({
-        forecast: 'It is snowing',
-        location: 'Philadelphia'
-    });
+    // All query string key/value pairs are on req.query
+    res.send('You provided "' + req.query.address + '" as the address.');
 });
 
 app.get('*', (req, res) => {
