@@ -6,4 +6,4 @@ const Task = mongoose.model('Task', {
         required: true,
         ref: 'User'
     }
-}).
+});
