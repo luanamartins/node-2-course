@@ -1,3 +1,4 @@
+require('dotenv').config();
 require('./db/mongoose');
 const express = require('express');
 
