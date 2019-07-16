@@ -1,9 +1,7 @@
-const mongoose = require('mongoose');
+require('./db/mongoose');
 const express = require('express');
 const userRoute = require('./routes/user');
 
-const connectionURL = 'mongodb://127.0.0.1:27017';
-const databaseName = 'task-manager';
 const app = express();
 const port = process.env.PORT || 3000;
 
