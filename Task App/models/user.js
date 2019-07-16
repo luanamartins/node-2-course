@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcrypt');
 
- module.exports = mongoose.model('User', {
+const schema = mongoose.Schema;
+const userSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -19,3 +21,24 @@ const validator = require('validator');
         }
     }
  });
+ userSchema.pre('save', async function (next) {
+    const user = this;
+    if (user.isModified('password')) {
+        user.password = await bcrypt.hash(user.password, 8);
+    }
+    next();
+});
+
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({ email });
+    if (!user) {
+        throw new Error('Unable to login');
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        throw new Error('Unable to login');
+    }
+    return user;
+}
+
+ module.exports = mongoose.model('User', userSchema);
