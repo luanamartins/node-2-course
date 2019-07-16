@@ -1,6 +1,6 @@
 const express = require('express');
-const User = require('./../models/User');
-const auth = require('./../services/auth');
+const User = require('../models/User');
+const auth = require('../services/auth');
 const router = new express.Router();
 
 router.get('/users/me', auth, async (req, res) => {

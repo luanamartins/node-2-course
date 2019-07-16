@@ -1,6 +1,8 @@
 require('./db/mongoose');
 const express = require('express');
-const userRoute = require('./routes/user');
+
+const userRouter = require('./routers/user');
+const taskRouter = require('./routers/task');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,7 +15,8 @@ const loggerMiddleware = (req, res, next) => {
 
 app.use(loggerMiddleware);
 app.use(express.json());
-app.use(userRoute);
+app.use(userRouter);
+app.use(taskRouter);
 
 app.listen(port, () => {
     console.log('Server is up on port 3000.');
