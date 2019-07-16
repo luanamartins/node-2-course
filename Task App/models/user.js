@@ -19,8 +19,15 @@ const userSchema = new Schema({
                 throw new Error('Email is invalid');
             }
         }
-    }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
  });
+
  userSchema.pre('save', async function (next) {
     const user = this;
     if (user.isModified('password')) {
